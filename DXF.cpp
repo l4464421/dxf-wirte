@@ -1,40 +1,41 @@
 #include "DXF.h"
+using namespace libdxf;
 
 DXF::DXF(std::string a)
 {
-	static std::ofstream myf(a);
-	fp = &myf;
+	fp.open(a);
+	
 
-	myf << "0\nSECTION\n";
-	myf << "2\nENTITIES\n";
+	fp << "0\nSECTION\n";
+	fp << "2\nENTITIES\n";
 }
 DXF::~DXF()
 {
-	*fp << "0 \nENDSEC\n";
-	*fp << "0 \nEOF";
-	fp->close();
+	fp << "0 \nENDSEC\n";
+	fp << "0 \nEOF";
+	fp.close();
 }
 
 void DXF::L(Piont start, Piont end)
 {
-	*fp<<"0 \nLINE\n";
-	*fp<<"8 \n0\n";
-	*fp<<"62 \n0\n";
-	*fp<<"10 \n"<<start.x<<"\n20 \n"<<start.y<<"\n11 \n"<<end.x<<"\n21 \n"<<end.y<<"\n";
+	fp<<"0 \nLINE\n";
+	fp<<"8 \n0\n";
+	fp<<"62 \n0\n";
+	fp<<"10 \n"<<start.x<<"\n20 \n"<<start.y<<"\n11 \n"<<end.x<<"\n21 \n"<<end.y<<"\n";
 }
 void DXF::C(Piont center,double radius)
 {
-	*fp << "0 \nCIRCLE\n";
-	*fp<<"8 \n0\n";
-	*fp<<"62 \n0\n";
-	*fp<<"10 \n"<<center.x<<"\n20 \n"<<center.y<<"\n40 \n"<<radius<<"\n";
+	fp << "0 \nCIRCLE\n";
+	fp<<"8 \n0\n";
+	fp<<"62 \n0\n";
+	fp<<"10 \n"<<center.x<<"\n20 \n"<<center.y<<"\n40 \n"<<radius<<"\n";
 }
 void DXF::ARC(Piont center,double radius,double start, double end)
 {
-	*fp << "0 \nARC\n";
-	*fp<<"8 \n0\n";
-	*fp<<"62 \n0\n";
-	*fp<<"10 \n"<<center.x<<"\n20 \n"<<center.y<<"\n40 \n"<<radius<<"\n50 \n"<<start<<"\n51 \n"<<end<<"\n";
+	fp << "0 \nARC\n";
+	fp<<"8 \n0\n";
+	fp<<"62 \n0\n";
+	fp<<"10 \n"<<center.x<<"\n20 \n"<<center.y<<"\n40 \n"<<radius<<"\n50 \n"<<start<<"\n51 \n"<<end<<"\n";
 }
 int DXF::ARC(Piont Center,Piont start, Piont end)
 {
