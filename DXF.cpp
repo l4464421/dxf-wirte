@@ -146,7 +146,7 @@ void DXF::OB(Piont Center,double length,double width,double angle)
 }
 bool DXF::Polygon(Piont Center,double diameter,int geshu,double angle)
 {
-	double radius = diameter / 2;
+	double radius = diameter / 2;//°ë¾¶
 	Piont p1, p2, p3, p4, p5, p6, p7, p8;
 	double x, y;
 	double bian_chang;
@@ -154,9 +154,9 @@ bool DXF::Polygon(Piont Center,double diameter,int geshu,double angle)
 	switch (geshu)
 	{
 	case 3:	
-		hudu = 0.16666666666*PI;
-		y = radius * sin(hudu);
-		x = radius * cos(hudu);
+		hudu = PI/3;
+		y = radius * cos(hudu);
+		x = radius * sin(hudu);
 		bian_chang = 2 * x;
 
 		p1.x = Center.x - x;
@@ -178,9 +178,9 @@ bool DXF::Polygon(Piont Center,double diameter,int geshu,double angle)
 		return 1;
 
 	case 5:		
-		hudu = 0.3 * PI;
-		y = radius * sin(hudu);
-		x = radius * cos(hudu);
+		hudu = PI/5;
+		y = radius * cos(hudu);
+		x = radius * sin(hudu);
 		bian_chang = 2 * x;
 
 		p1.x = Center.x - x;
@@ -206,9 +206,9 @@ bool DXF::Polygon(Piont Center,double diameter,int geshu,double angle)
 		L(p5, p1);		
 		return 1;
 	case 6:
-		hudu = 0.33333333333 * PI;
-		y = radius * sin(hudu);
-		x = radius * cos(hudu);
+		hudu = PI/6;
+		y = radius * cos(hudu);
+		x = radius * sin(hudu);
 		bian_chang = 2 * x;
 
 		p1.x = Center.x - x;
@@ -238,9 +238,9 @@ bool DXF::Polygon(Piont Center,double diameter,int geshu,double angle)
 
 		return 1;
 	case 8:
-		hudu = 0.377777777777 * PI;
-		y = radius * sin(hudu);
-		x = radius * cos(hudu);
+		hudu = PI/8;
+		y = radius * cos(hudu);
+		x = radius * sin(hudu);
 		bian_chang = 2 * x;
 
 		p1.x = Center.x - x;
